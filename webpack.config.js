@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     context: __dirname,
@@ -31,5 +32,6 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ template: "index.html" }),
         new ForkTsCheckerWebpackPlugin(),
+        new CleanWebpackPlugin(),
     ]
 };
