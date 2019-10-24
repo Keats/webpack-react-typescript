@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "esModuleInterop": true,
+    "target": "es6",
+    "jsx": "react",
+    "sourceMap": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
