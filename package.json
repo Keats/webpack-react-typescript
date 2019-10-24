@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "webpack"
+  },
   "devDependencies": {
     "typescript": "^3.6.4",
     "webpack": "^4.41.2",
