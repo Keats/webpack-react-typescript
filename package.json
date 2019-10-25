@@ -4,6 +4,7 @@
     "dev": "webpack-dev-server",
     "fmt": "prettier --write 'src/**/**.ts*'",
     "fmt:check": "prettier --list-different 'src/**/**.ts*'",
+    "lint": "eslint 'src/**/**.ts*'",
     "build": "webpack"
   },
   "prettier": {
@@ -17,7 +18,12 @@
   "devDependencies": {
     "@types/react": "^16.9.10",
     "@types/react-dom": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
     "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-react": "^7.16.0",
     "fork-ts-checker-webpack-plugin": "^1.6.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.9",
