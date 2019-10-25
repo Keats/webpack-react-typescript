@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -29,9 +30,21 @@ module.exports = {
         },
         ]
     },
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        port: 9000,
+        hot: true,
+        historyApiFallback: true,
+        overlay: true,
+        stats: "minimal"
+    },
     plugins: [
         new HtmlWebpackPlugin({ template: "index.html" }),
-        new ForkTsCheckerWebpackPlugin(),
+        new ForkTsCheckerWebpackPlugin({
+            // For the dev server overlay to work
+            async: false,
+        }),
         new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
