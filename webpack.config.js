@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProd = process.env.NODE_ENV === "production";
 const analyzeBundle = process.env.ANALYZE === "true";
@@ -35,8 +36,9 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
+          // Creates `style` nodes from JS strings in dev and extract it to
+          // another file in production
+          isProd ? MiniCssExtractPlugin.loader : "style-loader",
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
@@ -66,6 +68,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     isProd ? false : new webpack.HotModuleReplacementPlugin(),
-    analyzeBundle ? new BundleAnalyzerPlugin() : false
+    analyzeBundle ? new BundleAnalyzerPlugin() : false,
+    new MiniCssExtractPlugin(),
   ].filter(Boolean)
 };
