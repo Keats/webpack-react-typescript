@@ -5,7 +5,8 @@
     "fmt": "prettier --write 'src/**/**.{ts*,scss}'",
     "fmt:check": "prettier --list-different 'src/**/**.{ts*,scss}'",
     "lint": "eslint 'src/**/**.ts*'",
-    "build": "webpack"
+    "build": "webpack",
+    "build:prod": "cross-env NODE_ENV=production webpack"
   },
   "prettier": {
     "printWidth": 100
@@ -21,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",

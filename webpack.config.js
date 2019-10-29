@@ -4,17 +4,19 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
   context: __dirname,
-  mode: "development",
+  mode: isProd ? "production" : "development",
   entry: {
     app: "./src/index.tsx"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "app.[hash].js"
+    filename: "[name].[hash].js"
   },
-  devtool: "eval-source-map",
+  devtool: isProd ? "source-map" : "eval-source-map",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
@@ -56,6 +58,6 @@ module.exports = {
       async: false
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    isProd ? false : new webpack.HotModuleReplacementPlugin()
+  ].filter(Boolean)
 };
