@@ -3,8 +3,10 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const isProd = process.env.NODE_ENV === "production";
+const analyzeBundle = process.env.ANALYZE === "true";
 
 module.exports = {
   context: __dirname,
@@ -53,7 +55,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: "all"
     }
   },
   plugins: [
@@ -63,6 +65,7 @@ module.exports = {
       async: false
     }),
     new CleanWebpackPlugin(),
-    isProd ? false : new webpack.HotModuleReplacementPlugin()
+    isProd ? false : new webpack.HotModuleReplacementPlugin(),
+    analyzeBundle ? new BundleAnalyzerPlugin() : false
   ].filter(Boolean)
 };
