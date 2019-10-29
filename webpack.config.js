@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].js"
+    filename: isProd ? "[name].[contenthash].js" : "[name].[hash].js"
   },
   devtool: isProd ? "source-map" : "eval-source-map",
   resolve: {
@@ -50,6 +50,11 @@ module.exports = {
     historyApiFallback: true,
     overlay: true,
     stats: "minimal"
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "index.html" }),
