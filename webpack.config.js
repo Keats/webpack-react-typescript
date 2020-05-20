@@ -69,6 +69,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     isProd ? false : new webpack.HotModuleReplacementPlugin(),
     analyzeBundle ? new BundleAnalyzerPlugin() : false,
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: isProd ? "[name]-[contenthash].css" : "[name].css"
+    }),
   ].filter(Boolean)
 };
