@@ -1,0 +1,31 @@
+.photo {
+  width: 200px;
+}
+
+.roundedPhoto {
+  composes: photo;
+  border-radius: var(--border-radius, 1rem);
+}
+
+@media (--photo-breakpoint) {
+  .photo {
+    width: 400px;
+  }
+}
+
+.caption {
+  composes: visuallyHidden from "./utils.scss";
+}
+
+.photo-div {
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  top: var(--afterTopBanner) !important;
+  bottom: 0vh !important;
+  margin: 0rem;
+  width: 100%;
+  padding-left: 0rem 0rem;
+  z-index: auto;
+  color: white;
+}

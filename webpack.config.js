@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProd = process.env.NODE_ENV === "production";
 const analyzeBundle = process.env.ANALYZE === "true";
@@ -51,7 +51,7 @@ module.exports = {
             options: {
               modules: {
                 mode: "local",
-                localIdentName: '[local]--[hash:base64:6]',
+                localIdentName: "[local]--[hash:base64:6]"
               },
               localsConvention: "camelCase"
             }
@@ -87,6 +87,6 @@ module.exports = {
     analyzeBundle ? new BundleAnalyzerPlugin() : false,
     new MiniCssExtractPlugin({
       filename: isProd ? "[name]-[contenthash].css" : "[name].css"
-    }),
+    })
   ].filter(Boolean)
 };
